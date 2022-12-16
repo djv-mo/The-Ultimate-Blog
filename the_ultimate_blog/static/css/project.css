@@ -1,13 +1,132 @@
-/* These styles are generated from project.scss. */
-
-.alert-debug {
-  color: black;
-  background-color: white;
-  border-color: #d6e9c6;
+body{
+  background-color: #1c1c21;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-.alert-error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 3.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.category{
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(51, 51, 51);
+  border-image: initial;
+  border-radius: 9rem;
+  margin-right: 3px;
+  background-color: rgb(41, 41, 41);
+  font-weight: 700;
+  box-shadow: 0px 15px 45px -9px rgb(0 0 0 / 20%);
+
+}
+.category:hover{
+  background-color: #58bed5;
+  color: #fff;
+}
+a{
+  text-decoration: none;
+  color: aliceblue;
+}
+.form-control{
+  background-color: #0f2b31;
+  font-weight: 600;
+}
+.brand{
+  color: #58bed5;
+  font-weight: 700;
+}
+.brand:hover{
+  color: #58bed5;
+}
+.btn-link{
+  text-decoration: none;
+}
+.card{
+  --bs-card-bg: #1c1c21;
+  color: rgb(191, 191, 191);
+  border-radius: 2rem;
+  box-shadow: 0px 15px 45px -9px rgb(0 0 0 / 20%);
+}
+.card-title:hover{
+  color: #58bed5;
+
+}
+.position-sticky{
+  box-shadow: 0px 15px 45px -9px rgb(0 0 0 / 20%);
+  color: rgb(191, 191, 191);
+}
+.list-group{
+  --bs-list-group-bg:none;
+  --bs-list-group-action-hover-bg:none;
+}
+.list-group-item{
+  color: rgb(191, 191, 191);
+}
+.list-group-item:hover{
+  --bs-list-group-bg:#1c1c21;
+  color: rgb(191, 191, 191);
+}
+.tag{
+  background-color: rgb(41, 41, 41);
+  color: aliceblue;
+  font-weight:400;
+}
+.tag:hover{
+  background-color: #58bed5;
+  color: #fff;
+  
+ 
+}
+.card-tag{
+  font-weight: 300;
+  font-size: large;
+}
+.card-tag a:hover{
+  color: #fff;
+
 }
