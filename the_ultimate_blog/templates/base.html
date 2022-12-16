@@ -72,7 +72,7 @@
         >
           <div class="dropdown">
             <a
-              href="{% url 'home' %}"
+              href="{% url 'blog_url:home' %}"
               class="brand d-flex align-items-center col-lg-6 mb-2 mb-lg-0 text-decoration-none"
               aria-expanded="false"
             >
@@ -101,18 +101,9 @@
       {%block nav%}
       <div class="nav-scroller py-1 mb-4">
         <nav class="nav d-flex justify-content-between">
-          <a class="category p-2" href="#">World</a>
-          <a class="category p-2" href="#">U.S.</a>
-          <a class="category p-2" href="#">Technology</a>
-          <a class="category p-2" href="#">Design</a>
-          <a class="category p-2" href="#">Culture</a>
-          <a class="category p-2" href="#">Business</a>
-          <a class="category p-2" href="#">Politics</a>
-          <a class="category p-2" href="#">Opinion</a>
-          <a class="category p-2" href="#">Science</a>
-          <a class="category p-2" href="#">Health</a>
-          <a class="category p-2" href="#">Style</a>
-          <a class="category p-2" href="#">Travel</a>
+          {%for category in categories%}
+          <a class="category p-2" href="#">{{category.name}}</a>
+          {%endfor%}
         </nav>
       </div>
       {%endblock%}
@@ -123,7 +114,59 @@
         <div class="col-md-8">
           <div class="row mb-2">
             <!---->
-            {%block content%} {%endblock%}
+            {%block content%}
+            <!---->
+            <div class="col-sm-6">
+              <div class="card shadow-lg p-2 mb-5 rounded">
+                <!-- Card img -->
+                <div class="position-relative">
+                  <img
+                    class="card-img"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuploads-ssl.webflow.com%2F5e40303832015709f6bd9cb4%2F60125aad8aef94354ed31191_renamemodelmigrationsfile.png&f=1&nofb=1&ipt=3183a6fe2a6c46e1c65b81389dad442bd0f1348a26b89c4b874034c114a13550&ipo=images"
+                    alt="Card image"
+                  />
+                  <div
+                    class="card-img-overlay d-flex align-items-start flex-column p-3"
+                  >
+                    <!-- Card overlay bottom -->
+                    <div class="w-100 mt-auto">
+                      <!-- Card category -->
+                      <a href="#" class="badge text-bg-success mb-2">
+                        Gadgets</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body px-0 pt-3">
+                  <!-- Sponsored Post -->
+
+                  <h4 class="card-title mt-2">
+                    <a
+                      href="post-single.html"
+                      class="btn-link text-reset fw-bold"
+                      >12 worst types of business accounts you follow on
+                      Twitter</a
+                    >
+                  </h4>
+                  <p class="card-text">
+                    He moonlights difficult engrossed it, sportsmen. Interested
+                    has all Devonshire difficulty gay assistance joy. Unaffected
+                    at ye of compliment alteration to
+                  </p>
+                  <!-- Card info -->
+                  <hr />
+                  <div class="card-tag d-flex justify-content-start">
+                    <a href="#">tags</a>
+                  </div>
+                  <div class="d-flex justify-content-end mt-2">
+                    <small class="nav-item">Jan 22, 2022</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!---->
+            {%endblock%}
           </div>
         </div>
         {%block side%}
