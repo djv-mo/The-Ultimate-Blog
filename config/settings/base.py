@@ -79,6 +79,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
    # "the_ultimate_blog.users",
+    "the_ultimate_blog.blog",
+
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
