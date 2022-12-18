@@ -7,7 +7,7 @@
     <meta name="description" content="Blog" />
     <meta name="author" content="Mohamed ali ali" />
     <meta name="generator" content="Hugo 0.104.2" />
-    <title>{% block title %}The Ultimate blog{% endblock %}</title>
+    <title>The Ultimate blog{% block title %}{% endblock %}</title>
 
     <link
       rel="canonical"
@@ -20,39 +20,10 @@
       crossorigin="anonymous"
     />
 
-    <link
-      href="/docs/5.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-
     <!-- Favicons -->
-    <link
-      rel="apple-touch-icon"
-      href="/docs/5.2/assets/img/favicons/apple-touch-icon.png"
-      sizes="180x180"
-    />
+
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
-    <link
-      rel="icon"
-      href="/docs/5.2/assets/img/favicons/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      href="/docs/5.2/assets/img/favicons/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png"
-    />
-    <link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json" />
-    <link
-      rel="mask-icon"
-      href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg"
-      color="#712cf9"
-    />
-    <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico" />
+
     <meta name="theme-color" content="#712cf9" />
 
     <!-- Custom styles for this template -->
@@ -61,7 +32,6 @@
       rel="stylesheet"
     />
     <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
@@ -112,17 +82,21 @@
     <main class="container">
       <div class="row g-5">
         <div class="col-md-8">
-          <div class="row mb-2">
-            <!---->
-            {%block content%}
-            <!---->
-            <div class="col-sm-6">
+          <!---->
+
+          {%block content%}
+          <!---->
+          <!---->
+          <div class="col-sm-12">
+            <div class="card-columns">
+              {%for article in articles%}
+
               <div class="card shadow-lg p-2 mb-5 rounded">
                 <!-- Card img -->
                 <div class="position-relative">
                   <img
                     class="card-img"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuploads-ssl.webflow.com%2F5e40303832015709f6bd9cb4%2F60125aad8aef94354ed31191_renamemodelmigrationsfile.png&f=1&nofb=1&ipt=3183a6fe2a6c46e1c65b81389dad442bd0f1348a26b89c4b874034c114a13550&ipo=images"
+                    src="{{article.image.url}}"
                     alt="Card image"
                   />
                   <div
@@ -132,7 +106,7 @@
                     <div class="w-100 mt-auto">
                       <!-- Card category -->
                       <a href="#" class="badge text-bg-success mb-2">
-                        Gadgets</a
+                        {{article.category}}</a
                       >
                     </div>
                   </div>
@@ -143,16 +117,13 @@
 
                   <h4 class="card-title mt-2">
                     <a
-                      href="post-single.html"
+                      href="{{article.get_absolute_url}}"
                       class="btn-link text-reset fw-bold"
-                      >12 worst types of business accounts you follow on
-                      Twitter</a
+                      >{{article.title}}</a
                     >
                   </h4>
                   <p class="card-text">
-                    He moonlights difficult engrossed it, sportsmen. Interested
-                    has all Devonshire difficulty gay assistance joy. Unaffected
-                    at ye of compliment alteration to
+                    {{article.description|truncatechars:150}}
                   </p>
                   <!-- Card info -->
                   <hr />
@@ -160,14 +131,15 @@
                     <a href="#">tags</a>
                   </div>
                   <div class="d-flex justify-content-end mt-2">
-                    <small class="nav-item">Jan 22, 2022</small>
+                    <small class="nav-item">{{article.created.date}}</small>
                   </div>
                 </div>
               </div>
+              {%endfor%}
             </div>
-            <!---->
-            {%endblock%}
           </div>
+          <!---->
+          {% include "pagination.html" with page=articles %} {%endblock%}
         </div>
         {%block side%}
         <div class="col-md-4">
@@ -244,7 +216,6 @@
         {%endblock%}
       </div>
     </main>
-
     <footer
       class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
     >

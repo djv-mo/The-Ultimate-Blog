@@ -1,3 +1,4 @@
+
 body{
   background-color: #1c1c21;
 }
@@ -130,3 +131,30 @@ a{
   color: #fff;
 
 }
+
+@media (min-width: 768px) {
+  .card-columns  {
+    column-count: 2;
+    display: inline-block ;
+    column-gap: 1.25rem;
+  }
+
+}
+.pagination{
+  --bs-pagination-bg: #097289;
+}
+.page-link{
+  color: #fff;
+  border-radius: 5rem;
+
+
+}
+.page-item{
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+.page-items{
+margin-top: 32px;
+margin-left: 1rem;
+}
+

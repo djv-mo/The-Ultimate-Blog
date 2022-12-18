@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from model_utils.models import TimeStampedModel
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -23,6 +24,10 @@ class Article(TimeStampedModel):
 
     def __str__(self) -> str:
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog_url:article_detail',
+                       args=[self.slug])
 
 
 class Comment(models.Model):
