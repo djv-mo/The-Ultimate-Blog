@@ -32,6 +32,7 @@ class Article(TimeStampedModel):
     image = models.ImageField(upload_to='static/images')
     published = models.BooleanField('Published', default=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    views = models.IntegerField(default=0)
     objects = models.Manager()  # The default manager.
     publish = PublishedManager()  # Our custom manager
 

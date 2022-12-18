@@ -133,14 +133,7 @@ a{
 
 }
 
-/* @media (min-width: 768px) {
-  .card-columns  {
-    column-count: 2;
-    display: inline-block ;
-    column-gap: 1.25rem;
-  }
 
-} */
 .pagination{
   --bs-pagination-bg: #097289;
 }
@@ -162,3 +155,14 @@ margin-left: 1rem;
   height: 350px;
 }
 
+.trend-img{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.trend-title{
+  margin-left: 70px;
+  margin-bottom: 15px;
+}

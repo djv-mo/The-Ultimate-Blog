@@ -22,13 +22,15 @@ def index(request):
 def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug,
                                 published=True)
+    article.views = article.views+1
+    article.save()
     return render(request,
                   'pages/detail.html',
                   {'article': article})
 
 
 def category(request, slug):
-    articles = Article.publish.select_related('category').filter(category__slug=slug)
+    articles = Article.publish.select_related('category').filter(category__slug=slug).order_by('-id')
     paginator = Paginator(articles, 10)  # 3 posts in each page
     page = request.GET.get('page')
     try:

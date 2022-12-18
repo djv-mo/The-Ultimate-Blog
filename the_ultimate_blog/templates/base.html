@@ -156,45 +156,32 @@
             <div class="p-4 mb-3 rounded">
               <h4 class="fst-italic">Trending This Week</h4>
               <div class="list-group w-auto">
+                {%for top in top_articles%}
                 <a
-                  href="#"
+                  href="{{top.get_absolute_url}}"
                   class="list-group-item list-group-item-action d-flex gap-3 py-3"
                   aria-current="true"
                 >
-                  <img
-                    src="https://github.com/twbs.png"
-                    alt="twbs"
-                    width="60"
-                    height="60"
-                    class="rounded-circle flex-shrink-0"
-                  />
-                  <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div class="trend-img">
+                    <img
+                      src="{{top.image.url}}"
+                      alt="twbs"
+                      width="60"
+                      height="60"
+                      class="rounded-circle flex-shrink-0"
+                    />
+                  </div>
+                  <div
+                    class="trend-title d-flex gap-2 w-100 justify-content-between"
+                  >
                     <div>
-                      <h6 class="mt-4">Third heading</h6>
+                      <h6 class="mt-4">{{top.title}}</h6>
                     </div>
-                    <small class="opacity-50 text-nowrap">1w</small>
                   </div>
                 </a>
                 <!---->
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action d-flex gap-3 py-3"
-                  aria-current="true"
-                >
-                  <img
-                    src="https://github.com/twbs.png"
-                    alt="twbs"
-                    width="60"
-                    height="60"
-                    class="rounded-circle flex-shrink-0"
-                  />
-                  <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                      <h6 class="mt-4">Third heading</h6>
-                    </div>
-                    <small class="opacity-50 text-nowrap">1w</small>
-                  </div>
-                </a>
+                {%endfor%}
+
                 <!---->
               </div>
             </div>
