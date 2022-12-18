@@ -4,7 +4,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
-    categories = Category.objects.all()
     articles = Article.publish.select_related('category').order_by('-id')
     paginator = Paginator(articles, 10)  # 3 posts in each page
     page = request.GET.get('page')
@@ -16,22 +15,20 @@ def index(request):
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    context = {"categories": categories, 'articles': posts, 'page': page}
+    context = {'articles': posts, 'page': page}
     return render(request, 'base.html', context)
 
 
 def article_detail(request, slug):
-    categories = Category.objects.all()
     article = get_object_or_404(Article, slug=slug,
                                 published=True)
     return render(request,
                   'pages/detail.html',
-                  {'article': article, "categories": categories})
+                  {'article': article})
 
 
 def category(request, slug):
-    categories = Category.objects.all()
-    articles = Article.publish.filter(category__slug=slug)
+    articles = Article.publish.select_related('category').filter(category__slug=slug)
     paginator = Paginator(articles, 10)  # 3 posts in each page
     page = request.GET.get('page')
     try:
@@ -44,4 +41,15 @@ def category(request, slug):
         posts = paginator.page(paginator.num_pages)
     return render(request,
                   'pages/category.html',
-                  {'articles': posts, "categories": categories, 'page': page})
+                  {'articles': posts, 'page': page})
+
+
+def search_product(request):
+    """ search function  """
+    if request.method == "POST":
+        query_name = request.POST.get('name', None)
+        if query_name:
+            results = Article.publish.select_related('category').filter(title__icontains=query_name)
+            return render(request, 'pages/product-search.html', {"articles": results})
+
+    return render(request, 'pages/product-search.html')

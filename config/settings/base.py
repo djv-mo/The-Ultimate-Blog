@@ -68,17 +68,18 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
-#    "allauth",
- #   "allauth.account",
-  #  "allauth.socialaccount",
+    #    "allauth",
+    #   "allauth.account",
+    #  "allauth.socialaccount",
 ]
 
 LOCAL_APPS = [
-   # "the_ultimate_blog.users",
+    # "the_ultimate_blog.users",
     "the_ultimate_blog.blog",
 
     # Your stuff: custom apps go here
@@ -96,7 +97,7 @@ MIGRATION_MODULES = {"sites": "the_ultimate_blog.contrib.sites.migrations"}
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-   # "allauth.account.auth_backends.AuthenticationBackend",
+    # "allauth.account.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 #AUTH_USER_MODEL = "users.User"
@@ -183,7 +184,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                #"the_ultimate_blog.users.context_processors.allauth_settings",
+                "the_ultimate_blog.blog.custom_context_processor.subject_renderer",
             ],
         },
     }
