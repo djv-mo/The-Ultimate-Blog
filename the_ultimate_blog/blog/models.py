@@ -4,6 +4,13 @@ from model_utils.models import TimeStampedModel
 from django.urls import reverse
 
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager,
+                     self).get_queryset()\
+            .filter(published=True)
+
+
 class Category(models.Model):
     name = models.CharField('Category name', max_length=100)
     slug = AutoSlugField("Category Address",
@@ -11,6 +18,10 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('blog_url:category',
+                       args=[self.slug])
 
 
 class Article(TimeStampedModel):
@@ -21,6 +32,8 @@ class Article(TimeStampedModel):
     image = models.ImageField(upload_to='static/images')
     published = models.BooleanField('Published', default=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    objects = models.Manager()  # The default manager.
+    publish = PublishedManager()  # Our custom manager
 
     def __str__(self) -> str:
         return self.title

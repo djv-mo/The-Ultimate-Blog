@@ -1,6 +1,7 @@
 
 body{
-  background-color: #1c1c21;
+  /* background-color: #1c1c21; */
+  background-color: #fff;
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -156,5 +157,8 @@ a{
 .page-items{
 margin-top: 32px;
 margin-left: 1rem;
+}
+.card-img{
+  height: 350px;
 }
 

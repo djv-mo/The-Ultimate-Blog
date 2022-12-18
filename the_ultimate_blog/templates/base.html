@@ -68,15 +68,16 @@
           </div>
         </div>
       </header>
-      {%block nav%}
+
       <div class="nav-scroller py-1 mb-4">
         <nav class="nav d-flex justify-content-between">
           {%for category in categories%}
-          <a class="category p-2" href="#">{{category.name}}</a>
+          <a class="category p-2" href="{{category.get_absolute_url}}"
+            >{{category.name}}</a
+          >
           {%endfor%}
         </nav>
       </div>
-      {%endblock%}
     </div>
 
     <main class="container">
@@ -105,7 +106,10 @@
                     <!-- Card overlay bottom -->
                     <div class="w-100 mt-auto">
                       <!-- Card category -->
-                      <a href="#" class="badge text-bg-success mb-2">
+                      <a
+                        href="{% url 'blog_url:category' article.category.slug%}"
+                        class="badge text-bg-success mb-2"
+                      >
                         {{article.category}}</a
                       >
                     </div>
@@ -123,7 +127,7 @@
                     >
                   </h4>
                   <p class="card-text">
-                    {{article.description|truncatechars:150}}
+                    {{article.description|truncatechars:100}}
                   </p>
                   <!-- Card info -->
                   <hr />
@@ -138,10 +142,10 @@
               {%endfor%}
             </div>
           </div>
+          {% include "pagination.html" with page=articles %}
           <!---->
-          {% include "pagination.html" with page=articles %} {%endblock%}
+          {%endblock%}
         </div>
-        {%block side%}
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem">
             <div class="p-4 mb-3 rounded">
@@ -213,7 +217,6 @@
             </div>
           </div>
         </div>
-        {%endblock%}
       </div>
     </main>
     <footer
