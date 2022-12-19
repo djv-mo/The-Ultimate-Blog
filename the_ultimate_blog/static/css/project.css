@@ -1,7 +1,6 @@
 
 body{
-  /* background-color: #1c1c21; */
-  background-color: #fff;
+  background-color: #1c1c21;
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -75,8 +74,15 @@ a{
   color: aliceblue;
 }
 .form-control{
-  background-color: #0f2b31;
+  background-color: #1f1f1f;
   font-weight: 600;
+  color: aliceblue;
+}
+.form-control:focus{
+  background-color: #1f1f1f;
+  font-weight: 600;
+  color: aliceblue;
+
 }
 .brand{
   color: #58bed5;
@@ -165,4 +171,58 @@ margin-left: 1rem;
 .trend-title{
   margin-left: 70px;
   margin-bottom: 15px;
+}
+.search_h2{
+  color: #097289;
+}
+.search_h4{
+  color: rgb(191, 191, 191);
+
+}
+.input-submit{
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  --woocommerce: hsla(312,26%,75%,1);
+  --wc-green: hsla(94,60%,75%,1);
+  --wc-red: hsla(0,60%,75%,1);
+  --wc-orange: hsla(44,60%,75%,1);
+  --wc-blue: hsla(196,60%,75%,1);
+  --wc-primary: hsla(312,26%,75%,1);
+  --wc-primary-text: hsla(0,0%,100%,1);
+  --wc-secondary: hsla(0,0%,92%,1);
+  --wc-secondary-text: hsla(0,0%,75%,1);
+  --wc-highlight: hsla(102,26%,75%,1);
+  --wc-highligh-text: hsla(0,0%,100%,1);
+  --wc-content-bg: hsla(0,0%,100%,1);
+  --wc-subtext: hsla(0,0%,75%,1);
+  --woocommerce-night-eye: hsla(312,26%,52%,1);
+  --wc-green-night-eye: hsla(139,61%,20%,1);
+  --wc-red-night-eye: hsla(0,60%,33%,1);
+  --wc-orange-night-eye: hsla(44,100%,20%,1);
+  --wc-blue-night-eye: hsla(196,60%,49%,1);
+  --wc-primary-night-eye: hsla(312,26%,52%,1);
+  --wc-primary-text-night-eye: hsla(240,8%,12%,1);
+  --wc-secondary-night-eye: hsla(0,0%,18%,1);
+  --wc-secondary-text-night-eye: hsla(0,0%,32%,1);
+  --wc-highlight-night-eye: hsla(102,26%,52%,1);
+  --wc-highligh-text-night-eye: hsla(240,8%,12%,1);
+  --wc-content-bg-night-eye: hsla(240,8%,12%,1);
+  --wc-subtext-night-eye: hsla(0,0%,46%,1);
+  box-sizing: border-box;
+  border-color: #616161 !important;
+  margin: 0px;
+  font: inherit;
+  font-family: inherit;
+  appearance: button;
+  cursor: pointer;
+  font-size: 13px;
+  text-transform: uppercase;
+  border-radius: 100px !important;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  line-height: 50px;
+  padding: 0px 25px;
+  border: none;
+  font-weight: 700;
+  background-color: rgb(88, 190, 213) !important;
 }

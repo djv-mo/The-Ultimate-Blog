@@ -1,4 +1,11 @@
-{% extends "base.html" %} {%block content%} {%for article in articles%}
+{% extends "base.html" %} {%block title%} | searching for
+{{search_title}}{%endblock%} {%block content%}
+<h2 class="search_h2">Posts containing '{{search_title}}'</h2>
+{% with articles.count as total_count %}
+<h4 class="search_h4">
+  Found {{total_count}} result{{ total_count|pluralize }}
+</h4>
+{% endwith %} {%for article in articles%}
 <div class="col-sm-6">
   <div class="card shadow-lg p-2 mb-5 rounded">
     <!-- Card img -->

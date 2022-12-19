@@ -39,16 +39,23 @@ class Article(TimeStampedModel):
     def __str__(self) -> str:
         return self.title
 
+    class Meta:
+        ordering = ('-created',)
+
     def get_absolute_url(self):
         return reverse('blog_url:article_detail',
                        args=[self.slug])
 
 
-class Comment(models.Model):
-    name = models.CharField("Comment Author", max_length=255)
-    email = models.EmailField('Comment Email')
+class Comment(TimeStampedModel):
+    name = models.CharField("Name", max_length=255)
+    email = models.EmailField('Email')
     comment = models.TextField('Comment')
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return f'{self.name} in {self.article}'
+
+    class Meta:
+        ordering = ('created',)

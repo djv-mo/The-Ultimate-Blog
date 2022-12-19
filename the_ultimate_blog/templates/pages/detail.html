@@ -1,4 +1,5 @@
-{% extends "base.html" %} {%block content%}
+{% extends "base.html" %} {%load crispy_forms_tags %} {%block title%} |
+{{article.title}}{%endblock%} {%block content%}
 <div class="col-sm-12">
   <div class="card-columns-blog">
     <div class="card shadow-lg p-2 mb-5 rounded">
@@ -20,6 +21,47 @@
         <div class="card-tag d-flex justify-content-start">
           <a href="#">tags</a>
         </div>
+        <hr />
+        {% with comments.count as total_comments %}
+        <h5>{{ total_comments }} comment{{ total_comments|pluralize }}</h5>
+        {% endwith %} {% for comment in comments %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <p>{{ comment.comment|linebreaks }}</p>
+
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2">
+                  {{ comment.name }} - {{comment.created.date }}
+                </p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <i
+                  class="far fa-thumbs-up mx-2 fa-xs text-black"
+                  style="margin-top: -0.16rem"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% empty %}
+        <p>There are no comments yet.</p>
+        {% endfor %} {% if new_comment %}
+        <h3 class="search_h2">Your comment has been added.</h3>
+        {% else %}
+        <h4 class="search_h2">Leave a Comment</h4>
+        <form method="post">
+          {{ comment_form|crispy }} {% csrf_token %}
+          <input
+            name="submit"
+            type="submit"
+            id="submit"
+            class="input-submit"
+            value="Send a comment"
+          />
+        </form>
+        {% endif %}
       </div>
     </div>
   </div>
