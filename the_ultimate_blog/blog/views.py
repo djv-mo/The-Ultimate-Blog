@@ -6,7 +6,7 @@ from taggit.models import Tag
 
 
 def index(request, tag_slug=None, category_slug=None):
-    articles = Article.publish.select_related('category')
+    articles = Article.publish.select_related('category').prefetch_related('tags')
     # view of tags pages
     tag = None
     if tag_slug:
@@ -53,21 +53,21 @@ def article_detail(request, slug):
                    'comment_form': comment_form})
 
 
-def category(request, slug):
-    articles = Article.publish.select_related('category').filter(category__slug=slug)
-    paginator = Paginator(articles, 10)  # 3 posts in each page
-    page = request.GET.get('page')
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer deliver the first page
-        posts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range deliver last page of results
-        posts = paginator.page(paginator.num_pages)
-    return render(request,
-                  'pages/category.html',
-                  {'articles': posts, 'page': page})
+# def category(request, slug):
+#     articles = Article.publish.select_related('category').filter(category__slug=slug)
+#     paginator = Paginator(articles, 10)  # 3 posts in each page
+#     page = request.GET.get('page')
+#     try:
+#         posts = paginator.page(page)
+#     except PageNotAnInteger:
+#         # If page is not an integer deliver the first page
+#         posts = paginator.page(1)
+#     except EmptyPage:
+#         # If page is out of range deliver last page of results
+#         posts = paginator.page(paginator.num_pages)
+#     return render(request,
+#                   'pages/category.html',
+#                   {'articles': posts, 'page': page})
 
 
 def search_product(request):
