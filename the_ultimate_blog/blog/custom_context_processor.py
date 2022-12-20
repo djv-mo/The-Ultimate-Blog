@@ -11,5 +11,8 @@ def subject_renderer(request):
     return {
         'categories': Category.objects.all(),
         'top_articles': Article.publish.filter(created__gte=monday_of_last_week, created__lt=monday_of_this_week)
-        .order_by('-views')[:3]
+        .order_by('-views')[:3],
+        'trending_tags': Article.tags.most_common()[:15],
+
+
     }

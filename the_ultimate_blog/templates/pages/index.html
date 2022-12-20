@@ -1,10 +1,8 @@
-{% extends "base.html" %} {%block content%} {% if tag %} {%block title%} |
-{{tag.name}}{%endblock%}
-<h2 class="search_h2">Posts tagged with "{{ tag.name }}"</h2>
-{% endif %}
-<!---->
+{% extends "base.html" %} {%block content%} {% if tag %}
+<h2 class="search_h2">| {{ tag.name }}</h2>
 
-{%for article in articles%}
+{%endif%}
+<!---->{%for article in articles%}
 <div class="col-sm-6">
   <div class="card shadow-lg p-2 mb-5 rounded">
     <!-- Card img -->

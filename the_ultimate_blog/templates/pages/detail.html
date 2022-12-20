@@ -71,4 +71,33 @@
     </div>
   </div>
 </div>
+{%endblock%} {%block sidebar %}
+<h4 class="fst-italic">Similar posts</h4>
+<div class="list-group w-auto">
+  {%for post in similar_articles%}
+  <a
+    href="{{post.get_absolute_url}}"
+    class="list-group-item list-group-item-action d-flex gap-3 py-3"
+    aria-current="true"
+  >
+    <div class="trend-img">
+      <img
+        src="{{post.image.url}}"
+        alt="twbs"
+        width="60"
+        height="60"
+        class="rounded-circle flex-shrink-0"
+      />
+    </div>
+    <div class="trend-title d-flex gap-2 w-100 justify-content-between">
+      <div>
+        <h6 class="mt-4">{{post.title}}</h6>
+      </div>
+    </div>
+  </a>
+  <!---->
+  {% empty %} There are no similar posts yet. {%endfor%}
+
+  <!---->
+</div>
 {%endblock%}

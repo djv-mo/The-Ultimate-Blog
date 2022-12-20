@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Comment, Article
+from .models import Article
 from .forms import CommentForm
 from taggit.models import Tag
+from django.db.models import Count
 
 
 def index(request, tag_slug=None, category_slug=None):
@@ -13,11 +14,11 @@ def index(request, tag_slug=None, category_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         articles = articles.filter(tags__in=[tag])
     # view of Category pages
-    category = None
+    category_view = None
     if category_slug:
         articles = articles.filter(category__slug=category_slug)
 
-    paginator = Paginator(articles, 10)  # 3 posts in each page
+    paginator = Paginator(articles, 10)  # 10 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -25,15 +26,19 @@ def index(request, tag_slug=None, category_slug=None):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    context = {'articles': posts, 'page': page, 'tag': tag, 'category': category}
+    context = {'articles': posts,
+               'page': page,
+               'tag': tag, 'category': category_view}
     return render(request, 'pages/index.html', context)
 
 
 def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug,
                                 published=True)
+    # increase views with each request
     article.views = article.views+1
     article.save()
+    # adding comments
     comments = article.comments.filter(active=True)
     new_comment = None
     if request.method == 'POST':
@@ -44,13 +49,20 @@ def article_detail(request, slug):
             new_comment.save()
     else:
         comment_form = CommentForm()
+    # similar Articles
+    article_tags_ids = Article.tags.values_list('id', flat=True)
+    similar_articles = Article.publish.filter(tags__in=article_tags_ids)\
+        .exclude(id=article.id)
+    similar_articles = similar_articles.annotate(same_tags=Count('tags'))\
+        .order_by('-same_tags', '-views')[:3]
 
     return render(request,
                   'pages/detail.html',
                   {'article': article,
                    'comments': comments,
                    'new_comment': new_comment,
-                   'comment_form': comment_form})
+                   'comment_form': comment_form,
+                   'similar_articles': similar_articles})
 
 
 # def category(request, slug):
@@ -75,7 +87,8 @@ def search_product(request):
     if request.method == "POST":
         query_name = request.POST.get('name', None)
         if query_name:
-            results = Article.publish.select_related('category').filter(title__icontains=query_name)
+            results = Article.publish.select_related('category').prefetch_related(
+                'tags').filter(title__icontains=query_name)
             return render(request, 'pages/product-search.html', {"articles": results, 'search_title': query_name})
 
     return render(request, 'pages/product-search.html')
