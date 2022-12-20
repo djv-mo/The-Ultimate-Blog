@@ -1,4 +1,10 @@
-{% extends "base.html" %} {%block content%} {%for article in articles%}
+{% extends "base.html" %} {%block content%} {% if tag %} {%block title%} |
+{{tag.name}}{%endblock%}
+<h2 class="search_h2">Posts tagged with "{{ tag.name }}"</h2>
+{% endif %}
+<!---->
+
+{%for article in articles%}
 <div class="col-sm-6">
   <div class="card shadow-lg p-2 mb-5 rounded">
     <!-- Card img -->
@@ -9,7 +15,7 @@
         <div class="w-100 mt-auto">
           <!-- Card category -->
           <a
-            href="{% url 'blog_url:category' article.category.slug%}"
+            href="{% url 'blog_url:category_list' article.category.slug%}"
             class="badge text-bg-success mb-2"
           >
             {{article.category}}</a
@@ -28,11 +34,16 @@
           >{{article.title}}</a
         >
       </h4>
-      <p class="card-text">{{article.description|truncatechars:150}}</p>
+      <p class="card-text">{{article.description|truncatechars:100}}</p>
       <!-- Card info -->
       <hr />
       <div class="card-tag d-flex justify-content-start">
-        <a href="#">tags</a>
+        <small>tags: </small>
+        {% for tag in article.tags.all %}
+        <a class="tag-link" href="{% url 'blog_url:tag_list' tag.slug %}">
+          {{ tag.name }}
+        </a>
+        {% if not forloop.last %}, {% endif %} {% endfor %}
       </div>
       <div class="d-flex justify-content-end mt-2">
         <small class="nav-item">{{article.created.date}}</small>
@@ -41,4 +52,6 @@
   </div>
 </div>
 
-{%endfor%} {% include "pagination.html" with page=articles %} {%endblock%}
+{%endfor%} {% include "pagination.html" with page=articles %}
+<!---->
+{%endblock%}

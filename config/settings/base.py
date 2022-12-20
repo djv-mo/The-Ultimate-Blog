@@ -73,6 +73,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
+    'taggit',
     #    "allauth",
     #   "allauth.account",
     #  "allauth.socialaccount",

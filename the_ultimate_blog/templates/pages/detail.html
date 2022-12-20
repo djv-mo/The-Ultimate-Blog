@@ -19,7 +19,12 @@
         <!-- Card info -->
         <hr />
         <div class="card-tag d-flex justify-content-start">
-          <a href="#">tags</a>
+          <small>tags: </small>
+          {% for tag in article.tags.all %}
+          <a class="tag-link" href="{% url 'blog_url:tag_list' tag.slug %}">
+            {{ tag.name }}
+          </a>
+          {% if not forloop.last %}, {% endif %} {% endfor %}
         </div>
         <hr />
         {% with comments.count as total_comments %}

@@ -226,3 +226,8 @@ margin-left: 1rem;
   font-weight: 700;
   background-color: rgb(88, 190, 213) !important;
 }
+.tag-link{
+  font-size: medium;
+  font-style: italic;
+  color: rgb(88, 190, 213) !important;
+}

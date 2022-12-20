@@ -2,6 +2,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from model_utils.models import TimeStampedModel
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -20,7 +21,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('blog_url:category',
+        return reverse('blog_url:category_list',
                        args=[self.slug])
 
 
@@ -33,6 +34,7 @@ class Article(TimeStampedModel):
     published = models.BooleanField('Published', default=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     views = models.IntegerField(default=0)
+    tags = TaggableManager()
     objects = models.Manager()  # The default manager.
     publish = PublishedManager()  # Our custom manager
 
