@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Article
+from .models import Article, Category
 from .forms import CommentForm
 from taggit.models import Tag
 from django.db.models import Count
@@ -16,6 +16,7 @@ def index(request, tag_slug=None, category_slug=None):
     # view of Category pages
     category_view = None
     if category_slug:
+        category_view = get_object_or_404(Category, slug=category_slug)
         articles = articles.filter(category__slug=category_slug)
 
     paginator = Paginator(articles, 10)  # 10 posts in each page
@@ -28,7 +29,7 @@ def index(request, tag_slug=None, category_slug=None):
         posts = paginator.page(paginator.num_pages)
     context = {'articles': posts,
                'page': page,
-               'tag': tag, 'category': category_view}
+               'tag': tag, 'category_view': category_view}
     return render(request, 'pages/index.html', context)
 
 

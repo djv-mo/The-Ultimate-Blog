@@ -52,4 +52,15 @@
 
 {%endfor%} {% include "pagination.html" with page=articles %}
 <!---->
+{%endblock%} {%block nav%}
+<nav class="nav d-flex justify-content-between">
+  {%for category in categories%} {%if category.name == category_view.name %}
+  <a class="category-selected p-2" href="{{category.get_absolute_url}}"
+    >{{category.name}}</a
+  >{%else%}
+  <a class="category p-2" href="{{category.get_absolute_url}}"
+    >{{category.name}}</a
+  >
+  {%endif%} {%endfor%}
+</nav>
 {%endblock%}

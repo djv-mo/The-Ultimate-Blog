@@ -1,7 +1,7 @@
 
 body{
-background-color: #fff;
-  /* background-color: #1c1c21; */
+/* background-color: #fff; */
+  background-color: #1c1c21;
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -66,22 +66,24 @@ background-color: #fff;
   box-shadow: 0px 15px 45px -9px rgb(0 0 0 / 20%);
 
 }
-.category:hover{
-  background-color: #58bed5;
-  color: #fff;
-}
-.selected-category{
+.category-selected{
   border-width: 1px;
   border-style: solid;
   border-color: rgb(51, 51, 51);
   border-image: initial;
   border-radius: 9rem;
   margin-right: 3px;
-  background-color: rgb(41, 41, 41);
+  background-color: #58bed5;
   font-weight: 700;
   box-shadow: 0px 15px 45px -9px rgb(0 0 0 / 20%);
+  color: #fff;
 
 }
+.category:hover{
+  background-color: #58bed5;
+  color: #fff;
+}
+
 a{
   text-decoration: none;
   color: aliceblue;
