@@ -1,5 +1,7 @@
 from django.contrib import admin
-from django.utils.html import format_html
+from django.urls import reverse
+from django.db.models import Count
+from django.utils.html import format_html, urlencode
 from . import models
 
 # Article admin model
@@ -22,3 +24,22 @@ class AtricleAdminModel(admin.ModelAdmin):
 
     def image_view(self, obj):
         return format_html('<img src="{0}" style="width: 45px; height:45px;" />'.format(obj.image.url))
+
+# Category admin model
+
+
+@admin.register(models.Category)
+class CategoryAdminModel(admin.ModelAdmin):
+    list_display = ['name', 'articles_count']
+    search_fields = ['name']
+
+    @admin.display(ordering='articles_count')
+    def articles_count(self, category):
+        url = reverse('admin:blog_article_changelist') + '?' + \
+            urlencode({'category__id': str(category.id)})
+        return format_html('<a href="{}">{}</a>', url, category.articles_count)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            articles_count=Count('article')
+        )
