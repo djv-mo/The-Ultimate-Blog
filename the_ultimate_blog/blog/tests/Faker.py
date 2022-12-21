@@ -22,7 +22,7 @@ class ArticleFaker(factory.django.DjangoModelFactory):
     image = factory.Faker("image_url")
     views = factory.fuzzy.FuzzyInteger(0, 420)
     category = factory.SubFactory(CategoryFaker)
-    tags = None
+    tags = 'django'
 
     class Meta:
         model = Article
