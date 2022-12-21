@@ -1,46 +1,34 @@
-from ..models import Category, Article, Comment
 import pytest
+from .Faker import ArticleFaker, CategoryFaker, CommentFaker
+
 pytestmark = pytest.mark.django_db
 
 
 def test___str__category():
-    category = Category.objects.create(
-        name="food",
-        slug="food")
-    assert category.__str__() == "food"
-    assert str(category) == "food"
+    category = CategoryFaker()
+    assert category.__str__() == category.name
+    assert str(category) == category.name
 
 
 def test___str__article():
-    category = Category.objects.create(
-        name="food",
-        slug="food")
-
-    article = Article.objects.create(
-        title="World Cup",
-        slug="World_Cup",
-        published=True,
-        category=category)
-    assert article.__str__() == "World Cup"
-    assert str(article) == "World Cup"
+    article = ArticleFaker()
+    assert article.__str__() == article.title
+    assert str(article) == article.title
 
 
 def test___str__comment():
-    category = Category.objects.create(
-        name="food",
-        slug="food")
+    comment = CommentFaker()
+    assert comment.__str__() == comment.name
+    assert str(comment) == comment.name
 
-    article = Article.objects.create(
-        title="World Cup",
-        slug="World_Cup",
-        published=True,
-        category=category)
 
-    comment = Comment.objects.create(
-        name='john',
-        email='john@example.com',
-        comment='text',
-        article=article
-    )
-    assert comment.__str__() == 'john in World Cup'
-    assert str(comment) == "john in World Cup"
+def test_get_absolute_url_article():
+    article = ArticleFaker()
+    url = article.get_absolute_url()
+    assert url == f'/article/{article.slug}/'
+
+
+def test_get_absolute_url_category():
+    category = CategoryFaker()
+    url = category.get_absolute_url()
+    assert url == f'/category/{category.slug}/'
