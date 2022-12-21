@@ -60,7 +60,7 @@ class Comment(TimeStampedModel):
     active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
-        return f'{self.name} in {self.article}'
+        return self.name
 
     class Meta:
         ordering = ('created',)

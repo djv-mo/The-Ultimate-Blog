@@ -43,3 +43,13 @@ class CategoryAdminModel(admin.ModelAdmin):
         return super().get_queryset(request).annotate(
             articles_count=Count('article')
         )
+# Comments admin model
+
+
+@admin.register(models.Comment)
+class CategoryAdminModel(admin.ModelAdmin):
+    list_display = ['name', 'article', 'active']
+    list_editable = ['active']
+    list_per_page = 20
+    list_filter = ['article', 'active', 'created']
+    search_fields = ['article__title']
