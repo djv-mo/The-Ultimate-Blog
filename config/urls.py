@@ -3,8 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
-from django.views.generic import TemplateView
-
+admin.site.site_header = 'Blog Admin Panel'
 urlpatterns = [
     path("", include('the_ultimate_blog.blog.urls', namespace='blog_url')),
     # Django Admin, use {% url 'admin:index' %}

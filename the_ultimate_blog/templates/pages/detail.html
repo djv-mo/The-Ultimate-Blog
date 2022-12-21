@@ -15,7 +15,7 @@
         <!-- Sponsored Post -->
 
         <h4 class="card-title mt-2">{{article.title}}</h4>
-        <p class="card-text">{{article.description|linebreaks}}</p>
+        <p class="card-text">{{article.description|safe}}</p>
         <!-- Card info -->
         <hr />
         <div class="card-tag d-flex justify-content-start">

@@ -3,13 +3,16 @@ from autoslug import AutoSlugField
 from model_utils.models import TimeStampedModel
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from ckeditor.fields import RichTextField
 
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager,
                      self).get_queryset()\
-            .filter(published=True)
+            .filter(published=True)\
+            .select_related('category')\
+            .prefetch_related('tags')
 
 
 class Category(models.Model):
@@ -29,7 +32,7 @@ class Article(TimeStampedModel):
     title = models.CharField("Article title", max_length=255)
     slug = AutoSlugField("Article Address",
                          unique=True, always_update=False, populate_from="title")
-    description = models.TextField("Description")
+    description = RichTextField()
     image = models.ImageField(upload_to='static/images')
     published = models.BooleanField('Published', default=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)

@@ -7,7 +7,7 @@ from django.db.models import Count
 
 
 def index(request, tag_slug=None, category_slug=None):
-    articles = Article.publish.select_related('category').prefetch_related('tags')
+    articles = Article.publish.all()
     # view of tags pages
     tag = None
     if tag_slug:
@@ -88,8 +88,7 @@ def search_product(request):
     if request.method == "POST":
         query_name = request.POST.get('name', None)
         if query_name:
-            results = Article.publish.select_related('category').prefetch_related(
-                'tags').filter(title__icontains=query_name)
+            results = Article.publish.filter(title__icontains=query_name)
             return render(request, 'pages/product-search.html', {"articles": results, 'search_title': query_name})
 
     return render(request, 'pages/product-search.html')

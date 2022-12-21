@@ -65,7 +65,9 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
+    # "django.contrib.humanize",  # Handy template tags
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.forms",
 
@@ -74,6 +76,8 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'taggit',
+    'ckeditor',
+
     #    "allauth",
     #   "allauth.account",
     #  "allauth.socialaccount",

@@ -16,3 +16,6 @@ crispy-bootstrap5==0.7  # https://github.com/django-crispy-forms/crispy-bootstra
 django-redis==5.2.0  # https://github.com/jazzband/django-redis
 django-autoslug==1.9.8 # https://github.com/justinmayer/django-autoslug/
 django-taggit==3.1.0 # https://github.com/jazzband/django-taggit
+django-admin-interface==0.24.2 # https://github.com/fabiocaccamo/django-admin-interface
+django-ckeditor # https://github.com/django-ckeditor/django-ckeditor
+
