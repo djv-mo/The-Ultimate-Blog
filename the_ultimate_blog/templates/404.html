@@ -1,9 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Page not found{% endblock %} {% block
+content %}
+<h2 class="search_h2">| Page not found</h2>
 
-{% block title %}Page not found{% endblock %}
-
-{% block content %}
-<h1>Page not found</h1>
-
-<p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
 {% endblock content %}

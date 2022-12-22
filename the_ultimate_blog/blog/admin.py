@@ -47,7 +47,7 @@ class CategoryAdminModel(admin.ModelAdmin):
 
 
 @admin.register(models.Comment)
-class CategoryAdminModel(admin.ModelAdmin):
+class CommentAdminModel(admin.ModelAdmin):
     list_display = ['name', 'article', 'active']
     list_editable = ['active']
     list_per_page = 20
